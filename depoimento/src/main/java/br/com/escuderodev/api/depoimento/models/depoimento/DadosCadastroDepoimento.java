@@ -9,4 +9,5 @@ public record DadosCadastroDepoimento(
         String depoimento,
         @NotBlank(message = "nome do autor é obrigatório")
         String nomeDoAutor) {
+
 }
