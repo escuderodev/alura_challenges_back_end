@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/depoimentos")
+@CrossOrigin
 public class DepoimentoController {
 
     @Autowired
