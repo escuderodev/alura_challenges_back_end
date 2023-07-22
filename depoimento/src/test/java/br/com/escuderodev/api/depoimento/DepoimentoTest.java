@@ -77,4 +77,10 @@ public class DepoimentoTest extends DepoimentoApplicationTests {
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
+    @Test
+    public void excluirDepoimento_retornarStatusNoContent() throws Exception {
+        this.mockMvc.perform(MockMvcRequestBuilders.delete("/depoimentos/6"))
+                .andExpect(MockMvcResultMatchers.status().isNoContent());
+    }
+
 }
