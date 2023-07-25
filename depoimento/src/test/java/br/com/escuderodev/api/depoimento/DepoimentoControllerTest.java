@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class DepoimentoTest extends DepoimentoApplicationTests {
+public class DepoimentoControllerTest extends DepoimentoApplicationTests {
     private MockMvc mockMvc;
 
     @Autowired
@@ -41,7 +41,7 @@ public class DepoimentoTest extends DepoimentoApplicationTests {
         DadosCadastroDepoimento dados = new DadosCadastroDepoimento(
                 "https://www.carpemundi.com.br/wp-content/uploads/2022/01/frases-de-viagem-cm.jpg",
                 "Tudo certo e nada resolvido",
-                "Sergio");
+                "Maria");
 
         Depoimento depoimento = new Depoimento(dados);
 
@@ -53,16 +53,16 @@ public class DepoimentoTest extends DepoimentoApplicationTests {
                         .content(json)
                 )
                 .andExpect(MockMvcResultMatchers.status().isCreated())
-                .andExpect(MockMvcResultMatchers.header().string("location", Matchers.containsString("http://localhost/depoimento/6")));
+                .andExpect(MockMvcResultMatchers.header().string("location", Matchers.containsString("http://localhost/depoimento/10")));
     }
 
     @Test
-    public void atualizarDepoimento_retornarStatusCreated201() throws Exception {
+    public void atualizarDepoimento_retornarStatusOK200() throws Exception {
         DadosAtualizaDepoimento dados = new DadosAtualizaDepoimento(
-                1L,
+                10L,
                 "https://www.carpemundi.com.br/wp-content/uploads/2022/01/frases-de-viagem-cm.jpg",
                 "Tudo certo e nada resolvido",
-                "Sergio Soft");
+                "Maria de Fátima");
 
         Depoimento depoimento = new Depoimento();
         depoimento.atualizaDados(dados);
@@ -79,7 +79,7 @@ public class DepoimentoTest extends DepoimentoApplicationTests {
 
     @Test
     public void excluirDepoimento_retornarStatusNoContent() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.delete("/depoimentos/6"))
+        this.mockMvc.perform(MockMvcRequestBuilders.delete("/depoimentos/10"))
                 .andExpect(MockMvcResultMatchers.status().isNoContent());
     }
 
